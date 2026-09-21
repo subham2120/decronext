@@ -1,0 +1,88 @@
+.category-section {
+  max-width: 1200px;
+  margin: 70px auto;
+  padding: 0 24px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.section-label {
+  color: #4d7055;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0 0 6px;
+}
+
+.section-heading h2 {
+  color: #243b2a;
+  font-size: 32px;
+  margin: 0;
+}
+
+.section-heading button {
+  border: none;
+  background: none;
+  color: #243b2a;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+.category-card {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+  transition: transform 0.4s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.06);
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  padding: 18px;
+
+  background: linear-gradient(
+    transparent 45%,
+    rgba(0, 0, 0, 0.65)
+  );
+
+  color: white;
+}
+
+.category-overlay h3 {
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+
+.category-overlay span {
+  font-size: 12px;
+}
