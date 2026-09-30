@@ -390,26 +390,82 @@ GET    /api/products
 
 GET    /api/products/{id}
 
-GET    /api/products/category/{category}
+GET    /api/products/category/
+{category}
 GET    /api/products/search
+
 POST   /api/products
+
 PUT    /api/products/{id}
+
 DELETE /api/products/{id}
+
 Order APIs
+
 POST /api/orders
+
 GET  /api/orders
+
 GET  /api/orders/{id}
+
 Payment APIs
+
 POST /api/payment/create-order/{orderId}
+
 POST /api/payment/verify
+
 Contact APIs
+
 POST /api/contact
+
 GET  /api/contact
+
 Admin APIs
+
 GET /api/admin/dashboard/stats
+
 GET /api/admin/orders
+
 PUT /api/admin/orders/{id}/status
+
 📸 Screenshots
+<img width="631" height="293" alt="image" src="https://github.com/user-attachments/assets/1742a6c3-2303-4200-a955-243a09b6b446" />
+
+<img width="638" height="292" alt="image" src="https://github.com/user-attachments/assets/5482b52e-5011-4afc-a0ad-73ddb8a8f6f3" />
+<img width="638" height="298" alt="image" src="https://github.com/user-attachments/assets/4da11c40-16aa-4468-b8da-d3ca69eab2f2" />
+<img width="638" height="293" alt="image" src="https://github.com/user-attachments/assets/5db2b44d-d257-44e3-ad8a-11481050c23d" />
+<img width="640" height="299" alt="image" src="https://github.com/user-attachments/assets/af82682e-f4d6-4f28-bcc8-a74ae35c6c84" />
+
+
+<img width="638" height="296" alt="image" src="https://github.com/user-attachments/assets/352d14ea-1ecd-44e4-b80f-5bd3f8c11fd0" />
+<img width="640" height="296" alt="image" src="https://github.com/user-attachments/assets/3a69517c-f20f-4c02-a1cc-5fe6c55f34ce" />
+<img width="640" height="299" alt="image" src="https://github.com/user-attachments/assets/cf749fc6-6631-4438-8fd4-c12eef0b87b4" />
+<img width="635" height="292" alt="image" src="https://github.com/user-attachments/assets/8f80a735-03b6-4cb7-930d-2704f17ed9ce" />
+<img width="638" height="293" alt="image" src="https://github.com/user-attachments/assets/8dc0b8b2-31c7-4981-b016-be55f1f87d9d" />
+<img width="636" height="299" alt="image" src="https://github.com/user-attachments/assets/012136de-5b57-45ab-89de-f4df85712078" />
+<img width="640" height="318" alt="image" src="https://github.com/user-attachments/assets/629a7280-16c3-46d3-aa24-b5072118f57e" />
+<img width="518" height="308" alt="image" src="https://github.com/user-attachments/assets/244959f4-a9ea-4f56-ba7d-fcb2f3399fa3" />
+<img width="623" height="250" alt="image" src="https://github.com/user-attachments/assets/8491bdfe-2189-4f72-881a-fc1d085b12f0" />
+
+<img width="638" height="298" alt="image" src="https://github.com/user-attachments/assets/1f25a9c7-46c2-4ed0-baf7-7ad31cc20ec6" />
+<img width="636" height="298" alt="image" src="https://github.com/user-attachments/assets/17639d67-9ed9-4394-81e8-fa6124808924" />
+
+<img width="635" height="289" alt="image" src="https://github.com/user-attachments/assets/01656413-e6eb-415e-936f-e90d2db6b36b" />
+<img width="640" height="294" alt="image" src="https://github.com/user-attachments/assets/774d5712-8c5e-4473-a7d1-c5760ca28d12" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Screenshots of the application can be added here.
 
@@ -454,7 +510,7 @@ CI/CD pipeline
 Cloud deployment
  Author
 
-Subham Kumar
+Kumar Subham
 
 MCA | Java Full Stack Developer
 
