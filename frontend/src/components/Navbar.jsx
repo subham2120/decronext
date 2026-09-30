@@ -1,3 +1,5 @@
+
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useAuth } from "../context/AuthContext";
@@ -6,6 +8,7 @@ import { useCart } from "../context/CartContext";
 function Navbar() {
 
   const navigate = useNavigate();
+  const [search, setSearch] = useState("");
 
   const {
     user,
@@ -37,14 +40,25 @@ function Navbar() {
 
         <div className="nav-actions">
 
-          <div className="search-box">
-            <span>⌕</span>
+          <form
+  className="search-box"
+  onSubmit={(e) => {
+    e.preventDefault();
 
-            <input
-              type="text"
-              placeholder="Search decor..."
-            />
-          </div>
+    if (!search.trim()) return;
+
+    navigate(`/search?q=${encodeURIComponent(search.trim())}`);
+  }}
+>
+  <span>⌕</span>
+
+  <input
+    type="text"
+    placeholder="Search decor..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+</form>
 
           <Link to="/wishlist" className="icon-btn">
             ♡
@@ -57,27 +71,30 @@ function Navbar() {
             </span>
           </Link>
 
-          {isAuthenticated ? (
-            <>
-              <span className="user-name">
-                Hi, {user?.name}
-              </span>
+{isAuthenticated ? (
+  <>
+    {user?.role === "ADMIN" && (
+      <Link to="/admin" className="admin-nav-link">
+        Admin Dashboard
+      </Link>
+    )}
 
-              <button
-                className="login-btn"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <Link
-              to="/login"
-              className="login-btn"
-            >
-              Login
-            </Link>
-          )}
+    <span className="user-name">
+      Hi, {user?.name}
+    </span>
+
+    <button
+      className="login-btn"
+      onClick={handleLogout}
+    >
+      Logout
+    </button>
+  </>
+) : (
+  <Link to="/login" className="login-btn">
+    Login
+  </Link>
+)}
 
         </div>
 

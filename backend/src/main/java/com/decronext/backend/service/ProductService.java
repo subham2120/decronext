@@ -34,6 +34,29 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    public List<Product> searchProducts(String name) {
+        return productRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    public Product updateProduct(Long id, Product product) {
+
+        Product existingProduct = productRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Product not found")
+                );
+
+        existingProduct.setName(product.getName());
+        existingProduct.setCategory(product.getCategory());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setOldPrice(product.getOldPrice());
+        existingProduct.setRating(product.getRating());
+        existingProduct.setDiscount(product.getDiscount());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setImage(product.getImage());
+
+        return productRepository.save(existingProduct);
+    }
+
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }

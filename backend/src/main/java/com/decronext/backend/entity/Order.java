@@ -33,6 +33,9 @@ public class Order {
     @Column(nullable = false)
     private String paymentStatus;
 
+    @Column(unique = true)
+    private String razorpayOrderId;
+
     @Column(nullable = false)
     private String shippingAddress;
 

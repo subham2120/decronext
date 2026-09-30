@@ -108,3 +108,18 @@
   font-size: 10px;
   font-weight: 700;
 }
+
+.admin-nav-link {
+  color: #243b2a;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 12px;
+  border: 1px solid #dfe5df;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.admin-nav-link:hover {
+  background: #f0f4ef;
+}

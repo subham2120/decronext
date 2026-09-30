@@ -1,0 +1,159 @@
+.blog-details-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px 24px 80px;
+}
+
+/* ================= BACK ================= */
+
+.blog-back-link {
+  display: inline-block;
+  margin-bottom: 35px;
+  color: #243b2a;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.blog-back-link:hover {
+  text-decoration: underline;
+}
+
+/* ================= ARTICLE ================= */
+
+.blog-article-header {
+  max-width: 850px;
+  margin: 0 auto 35px;
+  text-align: center;
+}
+
+.blog-article-header p {
+  margin: 0 0 10px;
+  color: #6f8f75;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.blog-article-header h1 {
+  margin: 0;
+  color: #243b2a;
+  font-family: Georgia, serif;
+  font-size: 46px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.blog-article-header span {
+  display: block;
+  margin-top: 15px;
+  color: #999;
+  font-size: 12px;
+}
+
+/* ================= IMAGE ================= */
+
+.blog-article-image {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.blog-article-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ================= CONTENT ================= */
+
+.blog-article-content {
+  max-width: 760px;
+  margin: 45px auto 0;
+}
+
+.blog-article-content p {
+  margin: 0 0 22px;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ================= FOOTER ================= */
+
+.blog-article-footer {
+  max-width: 760px;
+  margin: 45px auto 0;
+  padding-top: 25px;
+  border-top: 1px solid #e5e9e4;
+}
+
+.blog-article-footer a {
+  color: #243b2a;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.blog-article-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ================= NOT FOUND ================= */
+
+.blog-details-not-found {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.blog-details-not-found h1 {
+  color: #243b2a;
+  font-family: Georgia, serif;
+}
+
+.blog-details-not-found a {
+  color: #243b2a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 700px) {
+  .blog-details-page {
+    padding: 35px 18px 60px;
+  }
+
+  .blog-article-header h1 {
+    font-size: 34px;
+  }
+
+  .blog-article-image {
+    height: 350px;
+    border-radius: 15px;
+  }
+
+  .blog-article-content {
+    margin-top: 30px;
+  }
+
+  .blog-article-content p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 450px) {
+  .blog-article-header h1 {
+    font-size: 29px;
+  }
+
+  .blog-article-image {
+    height: 280px;
+  }
+}

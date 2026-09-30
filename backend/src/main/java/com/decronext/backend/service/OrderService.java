@@ -2,6 +2,8 @@ package com.decronext.backend.service;
 
 import com.decronext.backend.dto.CreateOrderRequest;
 import com.decronext.backend.dto.OrderItemRequest;
+import com.decronext.backend.dto.OrderItemResponse;
+import com.decronext.backend.dto.OrderResponse;
 import com.decronext.backend.entity.Order;
 import com.decronext.backend.entity.OrderItem;
 import com.decronext.backend.entity.Product;
@@ -30,7 +32,7 @@ public class OrderService {
     }
 
     @Transactional
-    public Order createOrder(
+    public OrderResponse createOrder(
             CreateOrderRequest request,
             User user
     ) {
@@ -57,13 +59,6 @@ public class OrderService {
                             )
                     );
 
-            if (itemRequest.getQuantity() == null
-                    || itemRequest.getQuantity() < 1) {
-                throw new RuntimeException(
-                        "Quantity must be at least 1"
-                );
-            }
-
             double itemTotal =
                     product.getPrice()
                             * itemRequest.getQuantity();
@@ -82,18 +77,82 @@ public class OrderService {
 
         order.setTotalAmount(totalAmount);
 
-        return orderRepository.save(order);
+        Order savedOrder = orderRepository.save(order);
+
+        return mapToOrderResponse(savedOrder);
     }
 
-    public List<Order> getUserOrders(User user) {
+    @Transactional(readOnly = true)
+    public List<OrderResponse> getUserOrders(User user) {
+
         return orderRepository
-                .findByUserOrderByCreatedAtDesc(user);
+                .findByUserOrderByCreatedAtDesc(user)
+                .stream()
+                .map(this::mapToOrderResponse)
+                .toList();
     }
 
-    public Order getOrderById(Long id) {
-        return orderRepository.findById(id)
+    @Transactional(readOnly = true)
+    public OrderResponse getOrderById(Long id, User user) {
+
+        Order order = orderRepository.findByIdAndUser(id, user)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        return mapToOrderResponse(order);
+    }
+
+    @Transactional(readOnly = true)
+    public List<OrderResponse> getAllOrders() {
+
+        return orderRepository
+                .findAll()
+                .stream()
+                .map(this::mapToOrderResponse)
+                .toList();
+    }
+
+    @Transactional
+    public OrderResponse updateOrderStatus(
+            Long id,
+            String status
+    ) {
+
+        Order order = orderRepository.findById(id)
                 .orElseThrow(() ->
                         new RuntimeException("Order not found")
                 );
+
+        order.setStatus(status);
+
+        Order updatedOrder = orderRepository.save(order);
+
+        return mapToOrderResponse(updatedOrder);
     }
+
+    private OrderResponse mapToOrderResponse(Order order) {
+
+        List<OrderItemResponse> items =
+                order.getItems()
+                        .stream()
+                        .map(item ->
+                                new OrderItemResponse(
+                                        item.getProduct().getId(),
+                                        item.getProduct().getName(),
+                                        item.getQuantity(),
+                                        item.getPrice()
+                                )
+                        )
+                        .toList();
+
+        return new OrderResponse(
+                order.getId(),
+                order.getTotalAmount(),
+                order.getStatus(),
+                order.getPaymentStatus(),
+                order.getShippingAddress(),
+                order.getCreatedAt(),
+                items
+        );
+    }
+
 }

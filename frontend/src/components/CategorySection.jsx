@@ -6,7 +6,7 @@ const categories = [
     image: "/categories/lighting.png",
   },
   {
-    name: "Wall Décor",
+    name: "Wall Decor",
     image: "/categories/wall-decor.png",
   },
   {

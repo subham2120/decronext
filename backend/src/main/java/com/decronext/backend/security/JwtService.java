@@ -4,6 +4,7 @@ import com.decronext.backend.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -13,17 +14,19 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY =
-            "DecorNextSuperSecretKeyForJwtAuthentication2026";
-
-    private static final long EXPIRATION_TIME =
-            1000 * 60 * 60; // 1 hour
-
+    private final String secretKey;
+    private final long expirationTime;
     private final SecretKey key;
 
-    public JwtService() {
+    public JwtService(
+            @Value("${jwt.secret}") String secretKey,
+            @Value("${jwt.expiration}") long expirationTime
+    ) {
+        this.secretKey = secretKey;
+        this.expirationTime = expirationTime;
+
         this.key = Keys.hmacShaKeyFor(
-                SECRET_KEY.getBytes(StandardCharsets.UTF_8)
+                secretKey.getBytes(StandardCharsets.UTF_8)
         );
     }
 
@@ -35,7 +38,10 @@ public class JwtService {
                 .claim("role", user.getRole().name())
                 .issuedAt(new Date())
                 .expiration(
-                        new Date(System.currentTimeMillis() + EXPIRATION_TIME)
+                        new Date(
+                                System.currentTimeMillis()
+                                        + expirationTime
+                        )
                 )
                 .signWith(key)
                 .compact();

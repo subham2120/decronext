@@ -1,13 +1,38 @@
 import { useNavigate } from "react-router-dom";
 import "./ProductCard.css";
+import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
+import { useAuth } from "../context/AuthContext";
 
 function ProductCard({ product }) {
   const navigate = useNavigate();
+
   const { toggleWishlist, isWishlisted } = useWishlist();
+  const { addToCart } = useCart();
+  const { isAuthenticated } = useAuth();
 
   const handleProductClick = () => {
     navigate(`/product/${product.id}`);
+  };
+
+  const handleWishlist = (e) => {
+    e.stopPropagation();
+
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+
+    toggleWishlist(product);
+  };
+
+  const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+
+    addToCart(product);
   };
 
   return (
@@ -26,10 +51,7 @@ function ProductCard({ product }) {
         <button
           className={`wishlist-button ${isWishlisted(product.id) ? "wishlisted" : ""
             }`}
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleWishlist(product);
-          }}
+          onClick={handleWishlist}
         >
           {isWishlisted(product.id) ? "♥" : "♡"}
         </button>
@@ -69,7 +91,10 @@ function ProductCard({ product }) {
           )}
         </div>
 
-        <button className="add-cart-button">
+        <button
+          className="add-cart-button"
+          onClick={handleAddToCart}
+        >
           Add to Cart
         </button>
       </div>

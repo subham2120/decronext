@@ -1,12 +1,12 @@
 package com.decronext.backend.controller;
 
-import com.decronext.backend.entity.Product;
-import com.decronext.backend.service.ProductService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+        import com.decronext.backend.entity.Product;
+        import com.decronext.backend.service.ProductService;
+        import org.springframework.http.HttpStatus;
+        import org.springframework.http.ResponseEntity;
+        import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+        import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -59,6 +59,19 @@ public class ProductController {
                 .body(savedProduct);
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(
+            @PathVariable Long id,
+            @RequestBody Product product
+    ) {
+
+        Product updatedProduct =
+                productService.updateProduct(id, product);
+
+        return ResponseEntity.ok(updatedProduct);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(
             @PathVariable Long id
@@ -67,5 +80,12 @@ public class ProductController {
         productService.deleteProduct(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(
+            @RequestParam String name
+    ) {
+        return ResponseEntity.ok(productService.searchProducts(name));
     }
 }

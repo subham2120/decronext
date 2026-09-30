@@ -1,0 +1,103 @@
+.search-results-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+/* ================= HEADER ================= */
+
+.search-results-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.search-results-header > p:first-child {
+  margin: 0 0 8px;
+  color: #6f8f75;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.search-results-header h1 {
+  margin: 0;
+  color: #243b2a;
+  font-family: Georgia, serif;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.search-results-header .search-query {
+  margin: 12px 0 0;
+  color: #777;
+  font-size: 14px;
+}
+
+.search-query strong {
+  color: #243b2a;
+}
+
+/* ================= PRODUCTS ================= */
+
+.search-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* ================= MESSAGE ================= */
+
+.search-message {
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background: #fafbfa;
+  border: 1px solid #edf0ec;
+  border-radius: 18px;
+  padding: 30px;
+}
+
+.search-message h2 {
+  margin: 0 0 8px;
+  color: #243b2a;
+  font-family: Georgia, serif;
+  font-size: 25px;
+}
+
+.search-message p {
+  margin: 0;
+  color: #888;
+  font-size: 14px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+  .search-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .search-results-page {
+    padding: 45px 18px 60px;
+  }
+
+  .search-results-header h1 {
+    font-size: 34px;
+  }
+
+  .search-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 500px) {
+  .search-products-grid {
+    grid-template-columns: 1fr;
+  }
+}
