@@ -381,10 +381,15 @@ Backend APIs can be tested using Postman.
 
 Authentication APIs
 POST /api/auth/register
+
 POST /api/auth/login
+
 Product APIs
+
 GET    /api/products
+
 GET    /api/products/{id}
+
 GET    /api/products/category/{category}
 GET    /api/products/search
 POST   /api/products
